@@ -1,7 +1,6 @@
 using InvestFlowAPI.Data;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-var builder = WebApplication.CreateBuilder(args);
 
 // 1. Read the PORT environment variable provided by the hosting platform
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
