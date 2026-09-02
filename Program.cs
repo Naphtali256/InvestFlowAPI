@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 // DATABASE
 // ==========================================
 builder.Services.AddDbContext<InvestFlowDbContext>(options =>
-    options.UseSqlServer(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
@@ -59,3 +59,8 @@ app.UseAuthorization();
 // ==========================================
 app.MapControllers();
 app.Run();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<InvestFlowDbContext>();
+    db.Database.Migrate();
+}
